@@ -30,7 +30,7 @@ void BFSD(int start, int* dist, int** a, int n) {
 		v = Steck.front();
 		Steck.pop();
 		for (int i = 0; i < n; i++) {
-			if (a[v][i] && (dist[i] == -1)) {
+			if (a[v][i] && (dist[i] > (dist[v] + a[v][i]))) {
 				Steck.push(i);
 				dist[i] = dist[v] + a[v][i];
 				printf("v%d(%d) ", i + 1 , dist[i]);
@@ -164,7 +164,7 @@ void zad(bool orflag, bool susflag, int n){
 
 	//Одномерные массивы
 	for(int i = 0; i < n; i++){
-		vis[i] = -1;
+		vis[i] = 100000;
 	}
 	
 	//Вывод
@@ -177,7 +177,7 @@ void zad(bool orflag, bool susflag, int n){
 
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			vis[j] = -1;
+			vis[j] = 100000;
 		}
 		BFSD(i, vis, a, n);
 	}
